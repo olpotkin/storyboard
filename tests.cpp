@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
     sb.addNote(note_1);
     sb.addNote(note_2);
 
-    BOOST_CHECK( sb.getSize() == 2);
+    BOOST_CHECK(sb.getSize() == 2);
 
     sb.deleteNote(1);
     BOOST_CHECK(sb.getSize() == 1);
@@ -132,16 +132,16 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
     sb.addNote(note_3);
 
     auto result_1 = sb.searchByTitle("Note");
-    BOOST_CHECK( result_1.size() == 2);
+    BOOST_CHECK(result_1.size() == 2);
 
     auto result_2 = sb.searchByTitle("Note 3");
-    BOOST_CHECK( result_2.size() == 1);
+    BOOST_CHECK(result_2.size() == 1);
     auto note = sb.getNoteById(result_2[0]);
-    BOOST_CHECK( note.getId() == 3);
-    BOOST_CHECK( note.getTitle() == "Note 3");
+    BOOST_CHECK(note.getId() == 3);
+    BOOST_CHECK(note.getTitle() == "Note 3");
 
     auto result_3 = sb.searchByTitle("Doesn't exist");
-    BOOST_CHECK( result_3.size() == 0);
+    BOOST_CHECK(result_3.size() == 0);
   }
 
   // Test 07:
@@ -165,16 +165,16 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
     sb.addNote(note_3);
 
     auto result_1 = sb.searchByText("Some text #");
-    BOOST_CHECK( result_1.size() == 2);
+    BOOST_CHECK(result_1.size() == 2);
 
     auto result_2 = sb.searchByText("Some text #3");
-    BOOST_CHECK( result_2.size() == 1);
+    BOOST_CHECK(result_2.size() == 1);
     auto note = sb.getNoteById(result_2[0]);
-    BOOST_CHECK( note.getId() == 3);
-    BOOST_CHECK( note.getText() == "Some text #3");
+    BOOST_CHECK(note.getId() == 3);
+    BOOST_CHECK(note.getText() == "Some text #3");
 
     auto result_3 = sb.searchByText("Doesn't exist");
-    BOOST_CHECK( result_3.size() == 0);
+    BOOST_CHECK(result_3.size() == 0);
   }
 
   // Test 08:
@@ -203,19 +203,19 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
     sb.addNote(note_4);
 
     auto result_1 = sb.searchByTag("tag1");
-    BOOST_CHECK( result_1.size() == 3);
+    BOOST_CHECK(result_1.size() == 3);
 
     auto result_2 = sb.searchByTag("tag5");
-    BOOST_CHECK( result_2.size() == 2);
+    BOOST_CHECK(result_2.size() == 2);
 
     auto result_3 = sb.searchByTag("tag3");
-    BOOST_CHECK( result_3.size() == 1);
+    BOOST_CHECK(result_3.size() == 1);
     auto note = sb.getNoteById(result_3[0]);
-    BOOST_CHECK( note.getId() == 2);
-    BOOST_CHECK( note.getTitle() == "Note 2");
+    BOOST_CHECK(note.getId() == 2);
+    BOOST_CHECK(note.getTitle() == "Note 2");
 
     auto result_4 = sb.searchByTag("tagX");
-    BOOST_CHECK( result_4.size() == 0);
+    BOOST_CHECK(result_4.size() == 0);
   }
 
 BOOST_AUTO_TEST_SUITE_END()

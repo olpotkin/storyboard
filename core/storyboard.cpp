@@ -10,10 +10,8 @@
 int Storyboard::addNote(const Note &note) {
   if (!checkNoteExists(note.getId())) {
     this->notes.push_back(note);
-    //std::cout << "SUCCESS: " << "Note with id=" << note.getId() << " successfully added!" << std::endl;
     return 0;
   }
-  //std::cout << "FAIL: " << "Note with id=" << note.getId() << " already exists!" << std::endl;
   return -1;
 }
 
@@ -21,11 +19,9 @@ int Storyboard::addNote(const Note &note) {
 bool Storyboard::checkNoteExists(int id) {
   for (const auto& note : notes) {
     if (note.getId() == id) {
-      //std::cout << "SUCCESS: " << "Note with id=" << note.getId() << " successfully found!" << std::endl;
       return true;
     }
   }
-  //std::cout << "FAIL: " << "Note with id=" << id << " doesn't exist!" << std::endl;
   return false;
 }
 
@@ -33,11 +29,9 @@ bool Storyboard::checkNoteExists(int id) {
 Note Storyboard::getNoteById(int id) {
   for (const auto& note : notes) {
     if (note.getId() == id) {
-      //std::cout << "SUCCESS: " << "Note with id=" << note.getId() << " successfully returned!" << std::endl;
       return note;
     }
   }
-  //std::cout << "FAIL: " << "Note with id=" << id << " doesn't exist! Note with ID=-1 returned." << std::endl;
   return Note(-1);
 }
 
@@ -57,10 +51,6 @@ void Storyboard::deleteNote(int id) {
         break;
       }
     }
-    //std::cout << "SUCCESS: " << "Note with id=" << id << " successfully deleted!" << std::endl;
-  }
-  else {
-    //std::cout << "FAIL: " << "Nothing to delete. Note with id=" << id << " doesn't exist!" << std::endl;
   }
 }
 
@@ -69,7 +59,6 @@ std::vector<int> Storyboard::searchByTitle(const std::string &search_title) {
   std::vector<int> result;
   for (const auto& note : notes) {
     if (note.getTitle() == search_title) {
-      //std::cout << "SUCCESS: " << "Note with title=" << search_title << " is found!" << std::endl;
       result.push_back(note.getId());
     }
   }
@@ -81,7 +70,6 @@ std::vector<int> Storyboard::searchByText(const std::string &search_text) {
   std::vector<int> result;
   for (const auto& note : notes) {
     if (note.getText() == search_text) {
-      //std::cout << "SUCCESS: " << "Note with text=" << search_text << " is found!" << std::endl;
       result.push_back(note.getId());
     }
   }
@@ -97,9 +85,9 @@ std::vector<int> Storyboard::searchByTag(const std::string &search_tag) {
     auto tags = note.getTags();
     for (const auto &tag : tags) {
       if (tag == search_tag) {
-        //std::cout << "SUCCESS: " << "Note with tag=" << search_tag << " is found!" << std::endl;
         result.push_back(note.getId());
-        break;  // preventing of searching same tags within one Note
+        // Preventing of searching same tags within one Note
+        break;
       }
     }
   }
