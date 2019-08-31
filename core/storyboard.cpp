@@ -87,3 +87,21 @@ std::vector<int> Storyboard::searchByText(const std::string &search_text) {
   }
   return result;
 }
+
+// Time complexity: O(N*M), where
+// N - number of Notes in the storyboard
+// M - number of tags inside given Note
+std::vector<int> Storyboard::searchByTag(const std::string &search_tag) {
+  std::vector<int> result;
+  for (const auto &note : notes) {
+    auto tags = note.getTags();
+    for (const auto &tag : tags) {
+      if (tag == search_tag) {
+        std::cout << "SUCCESS: " << "Note with tag=" << search_tag << " is found!" << std::endl;
+        result.push_back(note.getId());
+        break;  // preventing of searching same tags within one Note
+      }
+    }
+  }
+  return result;
+}
