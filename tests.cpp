@@ -132,18 +132,15 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
     sb.addNote(note_3);
 
     auto result_1 = sb.searchByTitle("Note");
-    std::cout << "RESULT = " << result_1.size() << std::endl;
     BOOST_CHECK( result_1.size() == 2);
 
     auto result_2 = sb.searchByTitle("Note 3");
-    std::cout << "RESULT = " << result_2.size() << std::endl;
     BOOST_CHECK( result_2.size() == 1);
     auto note = sb.getNoteById(result_2[0]);
     BOOST_CHECK( note.getId() == 3);
     BOOST_CHECK( note.getTitle() == "Note 3");
 
     auto result_3 = sb.searchByTitle("Doesn't exist");
-    std::cout << "RESULT = " << result_3.size() << std::endl;
     BOOST_CHECK( result_3.size() == 0);
   }
 
