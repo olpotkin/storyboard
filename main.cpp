@@ -34,14 +34,51 @@
 
 int main() {
 
-  Note n1{1,
-          "Note 1",
-          "Some text",
-          {"tag1", "tag2"}};
-  std::cout << n1.getId()    << std::endl;
-  std::cout << n1.getTitle() << std::endl;
-  std::cout << n1.getText()  << std::endl;
+  Note note_1{1, "Note 1", "Some text #", {"tag1", "tag2"} };
+  Note note_2{2, "Note 2", "Some text #", {"tag2", "tag3"} };
+  Note note_3{3, "Note 3", "Some text #", {"tag1", "tag5"} };
+  Note note_4{4, "Note 4", "Some text #", {"tag1", "tag5"} };
 
+  Storyboard sb{};
+  sb.addNote(note_1);
+  sb.addNote(note_2);
+  sb.addNote(note_3);
+  sb.addNote(note_4);
+  std::cout << "Initial size of storyboard = " << sb.getSize() << std::endl;
+
+  sb.deleteNote(4);
+  std::cout << "Size of storyboard after deletion of 1 note = " << sb.getSize() << std::endl;
+  std::cout << std::endl;
+
+  auto search_1 = sb.searchByTitle("Note 1");
+  for (const auto& s : search_1) {
+    auto n = sb.getNoteById(s);
+    std::cout << "search by title:"
+              << " ID=" << n.getId()
+              << " Title=" << n.getTitle()
+              << std::endl;
+  }
+  std::cout << std::endl;
+
+  auto search_2 = sb.searchByText("Some text #");
+  for (const auto& s : search_2) {
+    auto n = sb.getNoteById(s);
+    std::cout << "search by text:"
+              << " ID=" << n.getId()
+              << " Title=" << n.getTitle()
+              << std::endl;
+  }
+  std::cout << std::endl;
+
+  auto search_3 = sb.searchByTag("tag5");
+  for (const auto& s : search_3) {
+    auto n = sb.getNoteById(s);
+    std::cout << "search by tag " << "'#tag5': "
+              << " ID=" << n.getId()
+              << " Title=" << n.getTitle()
+              << std::endl;
+  }
+  std::cout << std::endl;
 
   return 0;
 }
