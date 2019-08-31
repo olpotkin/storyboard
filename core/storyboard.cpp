@@ -17,7 +17,6 @@ int Storyboard::addNote(const Note &note) {
   return -1;
 }
 
-
 // Time complexity: O(N)
 bool Storyboard::checkNoteExists(int id) {
   for (const auto& note : notes) {
@@ -29,7 +28,6 @@ bool Storyboard::checkNoteExists(int id) {
   std::cout << "FAIL: " << "Note with id=" << id << " doesn't exist!" << std::endl;
   return false;
 }
-
 
 // Time complexity: O(N)
 Note Storyboard::getNoteById(int id) {
@@ -43,12 +41,10 @@ Note Storyboard::getNoteById(int id) {
   return Note(-1);
 }
 
-
 // Time complexity: O(1)
 int Storyboard::getSize() {
   return this->notes.size();
 }
-
 
 // Time complexity: O(N)
 void Storyboard::deleteNote(int id) {
@@ -66,6 +62,18 @@ void Storyboard::deleteNote(int id) {
   else {
     std::cout << "FAIL: " << "Nothing to delete. Note with id=" << id << " doesn't exist!" << std::endl;
   }
+}
+
+// Time complexity: O(N)
+std::vector<int> Storyboard::searchByTitle(const std::string &search_title) {
+  std::vector<int> result;
+  for (const auto& note : notes) {
+    if (note.getTitle() == search_title) {
+      std::cout << "SUCCESS: " << "Note with title=" << search_title << " founded!" << std::endl;
+      result.push_back(note.getId());
+    }
+  }
+  return result;
 }
 
 

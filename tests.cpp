@@ -8,6 +8,7 @@
 #include "core/note.h"
 #include "core/storyboard.h"
 
+
 BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
 
   // Test 01:
@@ -108,6 +109,39 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
 
     sb.deleteNote(2);
     BOOST_CHECK(sb.getSize() == 0);
+  }
+
+  // Test 06:
+  // Check if searchByTitle works as expected
+  BOOST_AUTO_TEST_CASE(test_06_searchByTitle) {
+    Note note_1{1,
+                "Note",
+                "Some text",
+                {"tag1", "tag2"} };
+    Note note_2{2,
+                "Note",
+                "Some text",
+                {"tag3", "tag4"} };
+    Note note_3{3,
+                "Note 3",
+                "Some text",
+                {"tag5", "tag6"} };
+    Storyboard sb{};
+    sb.addNote(note_1);
+    sb.addNote(note_2);
+    sb.addNote(note_3);
+
+    auto result_1 = sb.searchByTitle("Note");
+    std::cout << "RESULT = " << result_1.size() << std::endl;
+    BOOST_CHECK( result_1.size() == 2);
+
+    auto result_2 = sb.searchByTitle("Note 3");
+    std::cout << "RESULT = " << result_2.size() << std::endl;
+    BOOST_CHECK( result_2.size() == 1);
+
+    auto result_3 = sb.searchByTitle("Doesn't exist");
+    std::cout << "RESULT = " << result_3.size() << std::endl;
+    BOOST_CHECK( result_3.size() == 0);
   }
 
 
