@@ -138,11 +138,49 @@ BOOST_AUTO_TEST_SUITE(storyboard_test_suite)
     auto result_2 = sb.searchByTitle("Note 3");
     std::cout << "RESULT = " << result_2.size() << std::endl;
     BOOST_CHECK( result_2.size() == 1);
+    auto note = sb.getNoteById(result_2[0]);
+    BOOST_CHECK( note.getId() == 3);
+    BOOST_CHECK( note.getTitle() == "Note 3");
 
     auto result_3 = sb.searchByTitle("Doesn't exist");
     std::cout << "RESULT = " << result_3.size() << std::endl;
     BOOST_CHECK( result_3.size() == 0);
   }
 
+  // Test 06:
+  // Check if searchByText works as expected
+  BOOST_AUTO_TEST_CASE(test_07_searchByText) {
+    Note note_1{1,
+                "Note 1",
+                "Some text #",
+                {"tag1", "tag2"} };
+    Note note_2{2,
+                "Note 2",
+                "Some text #",
+                {"tag3", "tag4"} };
+    Note note_3{3,
+                "Note 3",
+                "Some text #3",
+                {"tag5", "tag6"} };
+    Storyboard sb{};
+    sb.addNote(note_1);
+    sb.addNote(note_2);
+    sb.addNote(note_3);
+
+    auto result_1 = sb.searchByText("Some text #");
+    std::cout << "RESULT = " << result_1.size() << std::endl;
+    BOOST_CHECK( result_1.size() == 2);
+
+    auto result_2 = sb.searchByText("Some text #3");
+    std::cout << "RESULT = " << result_2.size() << std::endl;
+    BOOST_CHECK( result_2.size() == 1);
+    auto note = sb.getNoteById(result_2[0]);
+    BOOST_CHECK( note.getId() == 3);
+    BOOST_CHECK( note.getText() == "Some text #3");
+
+    auto result_3 = sb.searchByText("Doesn't exist");
+    std::cout << "RESULT = " << result_3.size() << std::endl;
+    BOOST_CHECK( result_3.size() == 0);
+  }
 
 BOOST_AUTO_TEST_SUITE_END()

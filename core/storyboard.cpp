@@ -69,11 +69,21 @@ std::vector<int> Storyboard::searchByTitle(const std::string &search_title) {
   std::vector<int> result;
   for (const auto& note : notes) {
     if (note.getTitle() == search_title) {
-      std::cout << "SUCCESS: " << "Note with title=" << search_title << " founded!" << std::endl;
+      std::cout << "SUCCESS: " << "Note with title=" << search_title << " is found!" << std::endl;
       result.push_back(note.getId());
     }
   }
   return result;
 }
 
-
+// Time complexity: O(N)
+std::vector<int> Storyboard::searchByText(const std::string &search_text) {
+  std::vector<int> result;
+  for (const auto& note : notes) {
+    if (note.getText() == search_text) {
+      std::cout << "SUCCESS: " << "Note with text=" << search_text << " is found!" << std::endl;
+      result.push_back(note.getId());
+    }
+  }
+  return result;
+}
